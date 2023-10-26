@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+    <div style="border-radius: 1rem; margin: 2rem; text-align: center">
+        <h1 style="font-family: 'Noto Sans KR'">
+            helloworld list
+        </h1>
+    <form action="/accounts/hello_world/" method="post">
+        {% csrf_token %}
+        <div>
+            <input type="text" name="hello_world_input"/>
+        </div>
+        <input type="submit" class="btn btn-primary" value="POST"/>
+    </form>
+
+    {% if hello_world_list %}
+        {% for hello_world in hello_world_list %}
+            <h6>
+                {{ hello_world.text }}
+            </h6>
+        {% endfor %}
+    {% endif %}
+
+    </div>
+
+{% endblock %}

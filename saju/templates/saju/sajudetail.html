@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+    <div id="wrap">
+        <h1> detail 예제 </h1>
+        <form method="post" name="form1">
+
+            <!--사이트 위조 방지 설정이 기본적으로 설정 체크-->
+            {% csrf_token%}
+
+            <!--인덱스 번호는 숨김-->
+            <input type="hidden" name="idx" value="{{addsaju.idx}}">
+            <table>
+                <tr>
+                    <td>이름</td>
+                    <td><input type="text" name="name" value="{{addsaju.name}}"></td>
+                </tr>
+                <tr>
+                    <td>생일</td>
+                    <td><input type="text" name="birth" value="{{addsaju.birth}}"></td>
+                </tr>
+                <tr>
+                    <td>양력</td>
+                    <td><input type="text" name="solar" value="{{addsaju.solar}}"></td>
+                </tr>
+                <tr>
+                    <td>시간</td>
+                    <td><input type="text" name="sigan" value="{{addsaju.sigan}}"></td>
+                </tr>
+                <tr>
+                    <th colspan="2"> <!--버튼 추가-->
+                        <input type="button" value="리스트" onclick="gourl()">
+                        <input type="button" value="수정" onclick="update()">
+                        <input type="button" value="삭제" onclick="del()">
+                    </th>
+                </tr>
+            </table>
+
+        </form>
+    </div>
+    <script>
+        function gourl(){
+            location="/saju/list"
+        }
+
+        function del(){
+            document.form1.action="delete";
+            document.form1.submit();
+        }
+        function update(){
+            document.form1.action="update";
+            document.form1.submit();
+        }
+
+    </script>
+
+{% endblock %}

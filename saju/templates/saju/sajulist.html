@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+    <div style="border-radius: 1rem; margin: 2rem; text-align: center">
+        <h1 style="font-family: 'Noto Sans KR'">
+            Saju List
+        </h1>
+        <p>여기는 사주 리스트 : {{saju_count}}</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>NO</th>
+                    <th>NAME</th>
+                    <th>BIRTH</th>
+                    <th>양력</th>
+                    <th>시간</th>
+                    <th>작성일</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th colspan="5">
+                        <input type="button" value="등록" onclick="location='write'">
+                    </th>
+                </tr>
+            </tfoot>
+            <tbody>
+                <!--jstl 사용-->
+                {% for e in items %}
+                <tr>
+                    <td>{{e.idx}}</td>
+                    <td>
+                        <a href="detail?idx={{e.idx}}">{{e.name}}</a>
+                    </td>
+                    <td>{{e.birth}}</td>
+                    <td>{{e.solar}}</td>
+                    <td>{{e.sigan}}</td>
+                    <td>{{e.date_joined}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
